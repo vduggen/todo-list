@@ -11,12 +11,20 @@ export class AppComponent {
   public title: String = 'My Tasks';
 
   constructor() {
-    this.todos.push(new Todo(1, 'Passear com cachorro', false));
-    this.todos.push(new Todo(2, 'Ir ao supermercado', true));
-    this.todos.push(new Todo(3, 'Fazer café', false));
+    this.todos.push({id: 1, todo: 'Passear com cachorro', done:false});
+    this.todos.push({id: 2, todo: 'Fazer Café', done:false});
+    this.todos.push({id: 3, todo: 'Estudar Programação', done:false});
   }
 
-  alterarTexto() {
-    this.title = 'Text altered'
+  concluirTarefa(index) {
+    if (this.todos[index].done === true) {
+      this.todos[index].done = false;
+    }else {
+      this.todos[index].done = true;
+    }
+  }
+
+  removerTarefa(index) {
+    this.todos.splice(index, 1);
   }
 }

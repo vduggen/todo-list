@@ -1,8 +1,20 @@
 <h1>{{ title }}</h1>
 
-<ul>
-  <li *ngFor="let todo of todos">{{ todo.id }} - {{ todo.todo }} - {{ todo.done }} |
-    <button *ngIf="!todo.done" (click)="concluirTarefa()">Concluir</button> | <button>Remover</button></li>
-</ul>
+<table border="1">
+  <tr>
+    <th>Nome da Tarefa</th>
+    <th>Ações</th>
+  </tr>
 
-<button (click)="alterarTexto()">Alterar Titulo</button>
+  <tr *ngFor="let todo of todos; let i = index;">
+    <td [ngClass]="!todo.done ? 'done' : 'notDone'">{{ todo.todo }}</td>
+    <td>
+      <button *ngIf="!todo.done" (click)="concluirTarefa(i)">Concluir</button>
+      <button *ngIf="todo.done" (click)="concluirTarefa(i)">Refazer</button> |
+      <button (click)="removerTarefa(i)">Remover</button>
+    </td>
+  </tr>
+
+</table>
+
+<h4>Total de tarefas: {{ todos.length }}</h4>

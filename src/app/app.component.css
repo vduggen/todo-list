@@ -1,0 +1,30 @@
+h1 {
+    font-family: sans-serif;
+}
+
+table {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+table th {
+    padding: 10px;
+}
+
+table td {
+    padding: 10px;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.notDone {
+    text-decoration: none;
+}
+
+h4 {
+    font-family:sans-serif;
+    text-align: left;
+    margin-top: 5px;
+}
