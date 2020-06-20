@@ -6,3 +6,7 @@ body {
 
     text-align: center;
 }
+
+app-root {
+    width: 35%;
+}

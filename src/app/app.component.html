@@ -1,5 +1,20 @@
 <h1>{{ title }}</h1>
 
+<form [formGroup]="form">
+  <p id="msgErro" *ngIf="form.controls.taskName.invalid && !form.controls.taskName.pristine">
+    Esse campo deve ter no minimo 3 caracteres
+  </p>
+
+  <label for="addTask">Adicionar Tarefa</label>
+  <input 
+    type="text"
+    formControlName="taskName"
+    placeholder="Nome da sua tarefa"
+    maxlength="60"
+  >
+  <button [disabled]="form.invalid" (click)="addTask()">Adicionar</button>
+</form>
+
 <table border="1">
   <tr>
     <th>Nome da Tarefa</th>
@@ -7,14 +22,17 @@
   </tr>
 
   <tr *ngFor="let todo of todos; let i = index;">
-    <td [ngClass]="!todo.done ? 'done' : 'notDone'">{{ todo.todo }}</td>
+    <td [ngClass]="!todo.done ? 'notDone' : 'done'">{{ todo.todo }}</td>
     <td>
-      <button *ngIf="!todo.done" (click)="concluirTarefa(i)">Concluir</button>
-      <button *ngIf="todo.done" (click)="concluirTarefa(i)">Refazer</button> |
+      <button *ngIf="!todo.done" (click)="doneTask(i)">Concluir</button>
+      <button *ngIf="todo.done" (click)="asUndoned(i)">Refazer</button> |
       <button (click)="removerTarefa(i)">Remover</button>
     </td>
   </tr>
 
 </table>
 
-<h4>Total de tarefas: {{ todos.length }}</h4>
+<section id="counters">
+  <h4>Total de tarefas: {{ todos.length }}</h4>
+  <h4>Total de tarefas completadas: {{ completed.length }}</h4>
+</section>

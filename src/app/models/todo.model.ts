@@ -3,3 +3,7 @@ export interface Todo {
     todo: String,
     done: Boolean
 }
+
+export interface Completed {
+    id: Number
+}
