@@ -53,7 +53,7 @@ export class AppComponent {
 
   addTask() {
     const title = this.form.controls['taskName'].value;
-    const id = this.todos.length + 1;
+    const id = this.todos.length  + 1;
     this.todos.push({id, todo: title, done:false})
     this.saveData();
     this.form.reset();
@@ -66,6 +66,10 @@ export class AppComponent {
 
   loadData() {
     const data = localStorage.getItem('todos');
-    this.todos = JSON.parse(data);
+    if (data) {
+      this.todos = JSON.parse(data);
+    }else {
+      this.todos = [];
+    }
   }
 }
