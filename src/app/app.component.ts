@@ -24,14 +24,12 @@ export class AppComponent {
       ])]
     });
 
-    this.todos.push({id: 1, todo: 'Passear com cachorro', done:false});
-    this.todos.push({id: 2, todo: 'Fazer Café', done:false});
-    this.todos.push({id: 3, todo: 'Estudar Programação', done:false});
+    this.loadData();
   }
 
   doneTask(index) {
     this.todos[index].done = true;
-    
+
     this.saveData();
 
     this.completed.push(index);
@@ -64,5 +62,10 @@ export class AppComponent {
   saveData() {
     const data = JSON.stringify(this.todos);
     localStorage.setItem('todos',data);
+  }
+
+  loadData() {
+    const data = localStorage.getItem('todos');
+    this.todos = JSON.parse(data);
   }
 }
